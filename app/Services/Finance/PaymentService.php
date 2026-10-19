@@ -176,28 +176,39 @@ class PaymentService
             $exchangeRate,
             $totalEquivalentPaidUsd
         ) {
+            // Bloqueo pesimista de fila en PostgreSQL para prevenir condiciones de carrera concurrentes
+            $lockedEquipment = Equipment::where('id', $equipment->id)->lockForUpdate()->firstOrFail();
+            if ($lockedEquipment->is_fully_paid) {
+                throw new DomainException("El equipo ya fue liquidado en otra transacción concurrente.");
+            }
+
+            $lockedShift = CashShift::where('id', $cashShift->id)->lockForUpdate()->firstOrFail();
+            if (!$lockedShift->isOpen()) {
+                throw new DomainException("El turno de caja acaba de ser cerrado concurrentemente.");
+            }
+
             // Generar número de recibo consecutivo
             $receiptNumber = $this->generateReceiptNumber();
 
             $clientName = $paymentInput['client_name'] 
-                ?? $equipment->client_data['name'] 
+                ?? $lockedEquipment->client_data['name'] 
                 ?? 'Cliente Titular';
 
             $clientPhone = $paymentInput['client_phone'] 
-                ?? $equipment->client_data['phone'] 
+                ?? $lockedEquipment->client_data['phone'] 
                 ?? null;
 
             // 3. Crear el pago
             $payment = Payment::create([
                 'receipt_number' => $receiptNumber,
-                'equipment_id' => $equipment->id,
-                'cash_shift_id' => $cashShift->id,
+                'equipment_id' => $lockedEquipment->id,
+                'cash_shift_id' => $lockedShift->id,
                 'cashier_user_id' => $cashier->id,
                 'concept' => 'duty_and_delivery',
                 'amount_due_usd' => $balanceDueUsd,
-                'duty_amount_usd' => $equipment->duty_paid_abroad ? 0.00 : (float) $equipment->duty_amount_usd,
-                'shipping_fee_usd' => ($equipment->home_delivery_requested && !$equipment->delivery_paid_abroad) 
-                    ? (float) $equipment->shipping_fee_usd 
+                'duty_amount_usd' => $lockedEquipment->duty_paid_abroad ? 0.00 : (float) $lockedEquipment->duty_amount_usd,
+                'shipping_fee_usd' => ($lockedEquipment->home_delivery_requested && !$lockedEquipment->delivery_paid_abroad) 
+                    ? (float) $lockedEquipment->shipping_fee_usd 
                     : 0.00,
                 'amount_paid_usd' => $paidUsd,
                 'amount_paid_cup' => $paidCup,
@@ -214,15 +225,15 @@ class PaymentService
             ]);
 
             // 4. Actualizar totales del turno de caja
-            $cashShift->update([
-                'total_collected_usd' => round((float) $cashShift->total_collected_usd + $paidUsd, 2),
-                'expected_balance_usd' => round((float) $cashShift->expected_balance_usd + $paidUsd, 2),
-                'total_collected_cup' => round((float) $cashShift->total_collected_cup + $paidCup, 2),
-                'expected_balance_cup' => round((float) $cashShift->expected_balance_cup + $paidCup, 2),
+            $lockedShift->update([
+                'total_collected_usd' => round((float) $lockedShift->total_collected_usd + $paidUsd, 2),
+                'expected_balance_usd' => round((float) $lockedShift->expected_balance_usd + $paidUsd, 2),
+                'total_collected_cup' => round((float) $lockedShift->total_collected_cup + $paidCup, 2),
+                'expected_balance_cup' => round((float) $lockedShift->expected_balance_cup + $paidCup, 2),
             ]);
 
             // 5. Marcar equipo como TOTALMENTE PAGADO
-            $equipment->update([
+            $lockedEquipment->update([
                 'financial_status' => 'settled_in_cuba',
                 'is_fully_paid' => true,
                 'settled_at' => now(),
@@ -231,9 +242,9 @@ class PaymentService
 
             // 6. Registrar en bitácora inmutable
             EquipmentStatusHistory::create([
-                'equipment_id' => $equipment->id,
-                'from_status' => is_object($equipment->current_status) ? $equipment->current_status->value : $equipment->current_status,
-                'to_status' => is_object($equipment->current_status) ? $equipment->current_status->value : $equipment->current_status,
+                'equipment_id' => $lockedEquipment->id,
+                'from_status' => is_object($lockedEquipment->current_status) ? $lockedEquipment->current_status->value : $lockedEquipment->current_status,
+                'to_status' => is_object($lockedEquipment->current_status) ? $lockedEquipment->current_status->value : $lockedEquipment->current_status,
                 'location' => "Caja Almacén ({$cashShift->cashRegister->name})",
                 'notes' => "LIQUIDACIÓN CONFIRMADA — Recibo #{$receiptNumber}. Monto cobrado: \${$paidUsd} USD + \${$paidCup} CUP (Tasa: {$exchangeRate}). Equipo habilitado para entrega final.",
                 'changed_by_user_id' => $cashier->id,

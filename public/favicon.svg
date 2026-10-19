@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="blankisolGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a3166"/>
+      <stop offset="50%" stop-color="#051f42"/>
+      <stop offset="100%" stop-color="#020d1c"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Container -->
+  <rect width="64" height="64" rx="16" fill="url(#blankisolGrad)" stroke="#f5782b" stroke-width="2.5"/>
+  <!-- Ship Silhouette in BLANKISOL Orange & White -->
+  <path d="M12 40 L20 48 L44 48 L52 40 Z" fill="#f5782b"/>
+  <path d="M22 40 L22 30 L42 30 L42 40 Z" fill="#ffffff" opacity="0.95"/>
+  <path d="M28 30 L28 20 L36 20 L36 30 Z" fill="#cbcfd4"/>
+  <rect x="30" y="14" width="4" height="6" fill="#f5782b"/>
+  <!-- Waves -->
+  <path d="M8 52 Q16 48 24 52 T40 52 T56 52" fill="none" stroke="#ff934f" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

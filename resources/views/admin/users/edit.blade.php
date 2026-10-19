@@ -16,7 +16,7 @@
     </a>
   </div>
 
-  <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl">
+  <div class="card-corporate p-6 sm:p-8 border border-[#cbcfd4]/15 rounded-3xl p-6 sm:p-8 shadow-xl">
     <form method="POST" action="{{ route('admin.users.update', $user) }}" class="space-y-6">
       @csrf
       @method('PUT')
@@ -34,7 +34,7 @@
             name="name" 
             value="{{ old('name', $user->name) }}" 
             required 
-            class="w-full px-4 py-2.5 bg-slate-950/80 border @error('name') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            class="w-full px-4 py-2.5 bg-slate-950/80 border @error('name') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#f5782b]"
           />
           @error('name')
             <p class="mt-1 text-xs text-rose-400 font-medium">{{ $message }}</p>
@@ -53,7 +53,7 @@
               id="username" 
               name="username" 
               value="{{ old('username', $user->username) }}" 
-              class="w-full pl-8 pr-4 py-2.5 bg-slate-950/80 border @error('username') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              class="w-full pl-8 pr-4 py-2.5 bg-slate-950/80 border @error('username') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#f5782b]"
             />
           </div>
           @error('username')
@@ -72,7 +72,7 @@
             name="email" 
             value="{{ old('email', $user->email) }}" 
             required 
-            class="w-full px-4 py-2.5 bg-slate-950/80 border @error('email') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            class="w-full px-4 py-2.5 bg-slate-950/80 border @error('email') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#f5782b]"
           />
           @error('email')
             <p class="mt-1 text-xs text-rose-400 font-medium">{{ $message }}</p>
@@ -89,7 +89,7 @@
             id="password" 
             name="password" 
             placeholder="••••••••"
-            class="w-full px-4 py-2.5 bg-slate-950/80 border @error('password') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            class="w-full px-4 py-2.5 bg-slate-950/80 border @error('password') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#f5782b]"
           />
           @error('password')
             <p class="mt-1 text-xs text-rose-400 font-medium">{{ $message }}</p>
@@ -107,7 +107,7 @@
             name="phone" 
             value="{{ old('phone', $user->phone) }}" 
             placeholder="+53 5 123 4567"
-            class="w-full px-4 py-2.5 bg-slate-950/80 border @error('phone') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            class="w-full px-4 py-2.5 bg-slate-950/80 border @error('phone') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#f5782b]"
           />
           @error('phone')
             <p class="mt-1 text-xs text-rose-400 font-medium">{{ $message }}</p>
@@ -123,7 +123,7 @@
             id="role" 
             name="role" 
             required
-            class="w-full px-4 py-2.5 bg-slate-950/80 border @error('role') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            class="w-full px-4 py-2.5 bg-slate-950/80 border @error('role') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#f5782b]"
           >
             @php
               $currentRoleVal = $user->role instanceof \App\Enums\UserRole ? $user->role->value : $user->role;
@@ -147,7 +147,7 @@
           <select 
             id="regional_warehouse_id" 
             name="regional_warehouse_id" 
-            class="w-full px-4 py-2.5 bg-slate-950/80 border @error('regional_warehouse_id') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            class="w-full px-4 py-2.5 bg-slate-950/80 border @error('regional_warehouse_id') border-rose-500 @else border-slate-700 @enderror rounded-xl text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#f5782b]"
           >
             <option value="">-- Sin Almacén Fijo (Nivel Central) --</option>
             @foreach($warehouses as $wh)
@@ -171,7 +171,7 @@
           name="is_active" 
           value="1" 
           {{ old('is_active', $user->is_active) ? 'checked' : '' }}
-          class="w-4 h-4 rounded bg-slate-950 border-slate-700 text-indigo-600 focus:ring-indigo-500"
+          class="w-4 h-4 rounded bg-slate-950 border-slate-700 text-indigo-600 focus:ring-[#f5782b]"
         />
         <label for="is_active" class="text-xs text-slate-200 select-none cursor-pointer">
           <span class="font-bold">Cuenta Activa:</span> Permite al usuario acceder al sistema.
@@ -183,7 +183,7 @@
         <a href="{{ route('admin.users.index') }}" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-all">
           Cancelar
         </a>
-        <button type="submit" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 active:scale-95 transition-all">
+        <button type="submit" class="btn-corporate-primary text-xs !py-2.5 !px-6 shadow-lg">
           Actualizar Usuario
         </button>
       </div>

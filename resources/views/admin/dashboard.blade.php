@@ -5,26 +5,28 @@
 @section('content')
 <div class="space-y-6">
 
-  <!-- Welcome banner -->
-  <div class="p-6 rounded-2xl bg-gradient-to-r from-indigo-900/60 via-purple-900/40 to-slate-900 border border-indigo-500/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xl">
-    <div>
-      <span class="px-2.5 py-1 rounded-md bg-indigo-500/20 text-indigo-300 text-xs font-semibold uppercase tracking-wider border border-indigo-500/30">
-        Panel de Control Fullstack
+  <!-- Welcome banner con estilo BLANKISOL -->
+  <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#020d1c] via-[#051f42] to-[#0a254e] border border-[#cbcfd4]/15 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-2xl relative overflow-hidden">
+    <div class="absolute -right-8 -bottom-8 w-48 h-48 bg-[#f5782b]/10 blur-3xl pointer-events-none"></div>
+
+    <div class="relative z-10">
+      <span class="px-3 py-1 rounded-full bg-[#f5782b]/15 text-[#ff934f] text-xs font-bold uppercase tracking-wider border border-[#f5782b]/30">
+        Panel Ejecutivo &bull; Torre de Control
       </span>
-      <h3 class="text-2xl font-black text-white mt-2">
-        ¡Hola, {{ auth()->user()->name }}! 👋
+      <h3 class="text-2xl sm:text-3xl font-black text-white mt-2.5">
+        Hola, {{ auth()->user()->name }}
       </h3>
-      <p class="text-xs text-slate-300 mt-1 max-w-xl">
-        Aquí tienes el resumen completo del sistema, métricas de usuarios registrados y control de roles y accesos.
+      <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl">
+        Resumen operativo de usuarios registrados, roles del sistema SCGI y estado de infraestructura.
       </p>
     </div>
-    <div class="flex items-center gap-3">
-      <a href="{{ route('admin.users.create') }}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 active:scale-95 transition-all">
-        <i class="fa-solid fa-user-plus"></i>
+    <div class="flex flex-wrap items-center gap-3 relative z-10">
+      <a href="{{ route('admin.users.create') }}" class="btn-corporate-primary text-xs !py-3 !px-5 shadow-lg">
+        <i class="fa-solid fa-user-plus mr-1"></i>
         <span>Crear Usuario</span>
       </a>
-      <a href="{{ route('admin.users.index') }}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold transition-all">
-        <i class="fa-solid fa-users"></i>
+      <a href="{{ route('admin.users.index') }}" class="btn-corporate-secondary text-xs !py-3 !px-5">
+        <i class="fa-solid fa-users mr-1 text-[#f5782b]"></i>
         <span>Ver Usuarios</span>
       </a>
     </div>
@@ -34,49 +36,51 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
     
     <!-- Total Users -->
-    <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between shadow-sm hover:border-slate-700 transition-all">
+    <div class="card-corporate p-5 border border-[#cbcfd4]/15 flex items-center justify-between shadow-sm hover:border-[#f5782b]/40 transition-all">
       <div>
-        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Usuarios</p>
+        <p class="text-xs font-semibold text-[#cbcfd4] uppercase tracking-wider">Total Usuarios</p>
         <h4 class="text-3xl font-black text-white mt-1">{{ $totalUsers }}</h4>
-        <span class="text-[11px] text-slate-500 mt-0.5 block">Registrados en MySQL</span>
+        <span class="text-[11px] text-slate-400 mt-0.5 block font-mono">PostgreSQL SCGI</span>
       </div>
-      <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl">
+      <div class="w-12 h-12 rounded-2xl bg-[#0a254e] border border-[#cbcfd4]/20 text-[#f5782b] flex items-center justify-center text-xl shadow-md">
         <i class="fa-solid fa-users"></i>
       </div>
     </div>
 
-    <!-- Admins -->
-    <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between shadow-sm hover:border-slate-700 transition-all">
+    <!-- Admins / Directores -->
+    <div class="card-corporate p-5 border border-[#cbcfd4]/15 flex items-center justify-between shadow-sm hover:border-[#f5782b]/40 transition-all">
       <div>
-        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Administradores</p>
-        <h4 class="text-3xl font-black text-indigo-400 mt-1">{{ $adminCount }}</h4>
-        <span class="text-[11px] text-indigo-400/70 mt-0.5 block">Permisos Totales</span>
+        <p class="text-xs font-semibold text-[#cbcfd4] uppercase tracking-wider">Directores</p>
+        <h4 class="text-3xl font-black text-[#ff934f] mt-1">{{ $adminCount }}</h4>
+        <span class="text-[11px] text-slate-400 mt-0.5 block">Rol Director (Omni)</span>
       </div>
-      <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl">
+      <div class="w-12 h-12 rounded-2xl bg-[#f5782b]/15 border border-[#f5782b]/30 text-[#f5782b] flex items-center justify-center text-xl shadow-md">
         <i class="fa-solid fa-user-shield"></i>
       </div>
     </div>
 
-    <!-- Standard Users -->
-    <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between shadow-sm hover:border-slate-700 transition-all">
+    <!-- Standard Users / Operadores -->
+    <div class="card-corporate p-5 border border-[#cbcfd4]/15 flex items-center justify-between shadow-sm hover:border-[#f5782b]/40 transition-all">
       <div>
-        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Usuarios Estándar</p>
-        <h4 class="text-3xl font-black text-purple-400 mt-1">{{ $standardUserCount }}</h4>
-        <span class="text-[11px] text-purple-400/70 mt-0.5 block">Rol de Usuario</span>
+        <p class="text-xs font-semibold text-[#cbcfd4] uppercase tracking-wider">Operadores</p>
+        <h4 class="text-3xl font-black text-white mt-1">{{ $standardUserCount }}</h4>
+        <span class="text-[11px] text-slate-400 mt-0.5 block">Perfiles Operativos</span>
       </div>
-      <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-xl">
-        <i class="fa-solid fa-user"></i>
+      <div class="w-12 h-12 rounded-2xl bg-[#0a254e] border border-[#cbcfd4]/20 text-[#cbcfd4] flex items-center justify-center text-xl shadow-md">
+        <i class="fa-solid fa-user-gear"></i>
       </div>
     </div>
 
     <!-- Active Accounts -->
-    <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex items-center justify-between shadow-sm hover:border-slate-700 transition-all">
+    <div class="card-corporate p-5 border border-[#cbcfd4]/15 flex items-center justify-between shadow-sm hover:border-[#f5782b]/40 transition-all">
       <div>
-        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Cuentas Activas</p>
+        <p class="text-xs font-semibold text-[#cbcfd4] uppercase tracking-wider">Cuentas Habilitadas</p>
         <h4 class="text-3xl font-black text-emerald-400 mt-1">{{ $activeUserCount }}</h4>
-        <span class="text-[11px] text-emerald-400/70 mt-0.5 block">Acceso Habilitado</span>
+        <span class="text-[11px] text-emerald-400/80 mt-0.5 block flex items-center gap-1 font-mono">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Acceso Activo
+        </span>
       </div>
-      <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl">
+      <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xl shadow-md">
         <i class="fa-solid fa-circle-check"></i>
       </div>
     </div>
@@ -87,33 +91,37 @@
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     
     <!-- Recent Users Table (2 cols) -->
-    <div class="lg:col-span-2 bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-sm">
-      <div class="p-5 border-b border-slate-800 flex items-center justify-between">
+    <div class="lg:col-span-2 card-corporate border border-[#cbcfd4]/15 rounded-3xl overflow-hidden shadow-xl">
+      <div class="p-6 border-b border-[#cbcfd4]/15 flex items-center justify-between">
         <div>
-          <h4 class="text-base font-bold text-white">Usuarios Recientes</h4>
-          <p class="text-xs text-slate-400">Últimos registros en la base de datos</p>
+          <h4 class="text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-users text-[#f5782b]"></i>
+            <span>Usuarios Recientes</span>
+          </h4>
+          <p class="text-xs text-slate-400">Últimos operadores y directores registrados</p>
         </div>
-        <a href="{{ route('admin.users.index') }}" class="text-xs font-bold text-indigo-400 hover:text-indigo-300">
-          Ver todos →
+        <a href="{{ route('admin.users.index') }}" class="text-xs font-bold text-[#ff934f] hover:text-white flex items-center gap-1">
+          <span>Ver todos</span>
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
         </a>
       </div>
 
       <div class="overflow-x-auto">
         <table class="w-full text-left text-xs text-slate-300">
-          <thead class="bg-slate-950/60 text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
+          <thead class="bg-[#020d1c] text-[#cbcfd4] uppercase tracking-wider font-semibold border-b border-[#cbcfd4]/15">
             <tr>
               <th class="px-5 py-3.5">Usuario</th>
-              <th class="px-5 py-3.5">Rol</th>
+              <th class="px-5 py-3.5">Rol Funcional</th>
               <th class="px-5 py-3.5">Estado</th>
               <th class="px-5 py-3.5 text-right">Acción</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/60">
+          <tbody class="divide-y divide-[#cbcfd4]/10 bg-[#020d1c]/40">
             @forelse($recentUsers as $user)
-              <tr class="hover:bg-slate-800/40 transition-colors">
+              <tr class="hover:bg-[#0a254e]/50 transition-colors">
                 <td class="px-5 py-3.5">
                   <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center font-bold text-xs text-indigo-400">
+                    <div class="w-8 h-8 rounded-lg bg-[#051f42] border border-[#cbcfd4]/20 flex items-center justify-center font-bold text-xs text-[#ff934f] font-mono">
                       {{ strtoupper(substr($user->name, 0, 2)) }}
                     </div>
                     <div>
@@ -124,28 +132,28 @@
                 </td>
                 <td class="px-5 py-3.5">
                   @if($user->isAdmin())
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
-                      <i class="fa-solid fa-crown text-[9px]"></i> Administrador
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#f5782b]/15 text-[#ff934f] border border-[#f5782b]/30">
+                      <i class="fa-solid fa-crown text-[9px]"></i> Director
                     </span>
                   @else
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-purple-500/15 text-purple-300 border border-purple-500/30">
-                      <i class="fa-solid fa-user text-[9px]"></i> Usuario
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#0a254e] text-slate-200 border border-[#cbcfd4]/20">
+                      <i class="fa-solid fa-user text-[9px] text-[#f5782b]"></i> {{ $user->role?->label() ?? 'Operador' }}
                     </span>
                   @endif
                 </td>
                 <td class="px-5 py-3.5">
                   @if($user->is_active)
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
                       <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Activo
                     </span>
                   @else
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-500/15 text-rose-400 border border-rose-500/30">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-rose-500/15 text-rose-400 border border-rose-500/30">
                       <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span> Inactivo
                     </span>
                   @endif
                 </td>
                 <td class="px-5 py-3.5 text-right">
-                  <a href="{{ route('admin.users.edit', $user) }}" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white font-semibold transition-all">
+                  <a href="{{ route('admin.users.edit', $user) }}" class="px-3 py-1.5 rounded-xl bg-[#0a254e] hover:bg-[#051f42] border border-[#cbcfd4]/20 text-slate-200 hover:text-white font-semibold transition-all">
                     Editar
                   </a>
                 </td>
@@ -164,46 +172,46 @@
 
     <!-- System info card (1 col) -->
     <div class="space-y-4">
-      <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm space-y-4">
-        <h4 class="text-sm font-bold text-white flex items-center gap-2">
-          <i class="fa-solid fa-server text-indigo-400"></i>
+      <div class="card-corporate p-6 border border-[#cbcfd4]/15 rounded-3xl shadow-xl space-y-4">
+        <h4 class="text-sm font-bold text-white flex items-center gap-2 pb-3 border-b border-[#cbcfd4]/15">
+          <i class="fa-solid fa-server text-[#f5782b]"></i>
           <span>Entorno de Ejecución</span>
         </h4>
         
         <div class="space-y-2.5 text-xs">
-          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
-            <span class="text-slate-400">Framework:</span>
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#020d1c]/80 border border-[#cbcfd4]/10">
+            <span class="text-[#cbcfd4]">Framework:</span>
             <span class="font-bold text-white">Laravel {{ app()->version() }}</span>
           </div>
-          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
-            <span class="text-slate-400">Versión PHP:</span>
-            <span class="font-bold text-indigo-400">PHP {{ phpversion() }}</span>
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#020d1c]/80 border border-[#cbcfd4]/10">
+            <span class="text-[#cbcfd4]">Versión PHP:</span>
+            <span class="font-mono font-bold text-[#ff934f]">PHP {{ phpversion() }}</span>
           </div>
-          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
-            <span class="text-slate-400">Base de Datos:</span>
-            <span class="font-bold text-emerald-400">MySQL (mi_web)</span>
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#020d1c]/80 border border-[#cbcfd4]/10">
+            <span class="text-[#cbcfd4]">Base de Datos:</span>
+            <span class="font-bold text-emerald-400 font-mono">PostgreSQL 16 (scgi_db)</span>
           </div>
-          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-950/60 border border-slate-800">
-            <span class="text-slate-400">Servidor Web:</span>
-            <span class="font-bold text-purple-400">Apache (XAMPP)</span>
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#020d1c]/80 border border-[#cbcfd4]/10">
+            <span class="text-[#cbcfd4]">Servidor / Entorno:</span>
+            <span class="font-bold text-white">XAMPP Apache + SCGI</span>
           </div>
         </div>
       </div>
 
       <!-- Quick Role Info -->
-      <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-sm">
-        <h4 class="text-sm font-bold text-white flex items-center gap-2 mb-3">
-          <i class="fa-solid fa-key text-purple-400"></i>
-          <span>Gestión de Roles</span>
+      <div class="card-corporate p-6 border border-[#cbcfd4]/15 rounded-3xl shadow-xl">
+        <h4 class="text-sm font-bold text-white flex items-center gap-2 mb-3 pb-3 border-b border-[#cbcfd4]/15">
+          <i class="fa-solid fa-key text-[#f5782b]"></i>
+          <span>Matriz de Roles (RBAC 7)</span>
         </h4>
         <ul class="text-xs space-y-2 text-slate-300">
           <li class="flex items-start gap-2">
-            <i class="fa-solid fa-check text-indigo-400 mt-0.5"></i>
-            <span><strong>Admin:</strong> Control total de usuarios, roles, métricas y configuración.</span>
+            <i class="fa-solid fa-check text-[#f5782b] mt-0.5"></i>
+            <span><strong>Director:</strong> Omni-acceso ejecutivo y configuración del sistema.</span>
           </li>
           <li class="flex items-start gap-2">
-            <i class="fa-solid fa-check text-purple-400 mt-0.5"></i>
-            <span><strong>Usuario:</strong> Acceso a perfil y funciones estándar del sistema.</span>
+            <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+            <span><strong>Operadores:</strong> Acceso funcional segmentado (Aduana, Despacho, Chofer, Cajero, Auditor, PVP).</span>
           </li>
         </ul>
       </div>

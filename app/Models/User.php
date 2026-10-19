@@ -8,6 +8,7 @@ use App\Enums\UserRole;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -54,6 +55,16 @@ class User extends Authenticatable
     public function regionalWarehouse(): BelongsTo
     {
         return $this->belongsTo(RegionalWarehouse::class, 'regional_warehouse_id');
+    }
+
+    public function simulationScenarios(): HasMany
+    {
+        return $this->hasMany(SimulationScenario::class);
+    }
+
+    public function economicAuditLogs(): HasMany
+    {
+        return $this->hasMany(EconomicAuditLog::class);
     }
 
     /**
@@ -125,12 +136,17 @@ class User extends Authenticatable
         return $this->role === UserRole::AUDITOR;
     }
 
+    public function isJefeEconomico(): bool
+    {
+        return $this->role === UserRole::JEFE_ECONOMICO;
+    }
+
     /**
      * Valida si el usuario tiene permiso para operar sobre un almacén regional determinado.
      */
     public function canAccessWarehouse(?string $warehouseId): bool
     {
-        if ($this->isDirector() || $this->isAuditor() || $this->isDespachoPuerto()) {
+        if ($this->isDirector() || $this->isAuditor() || $this->isDespachoPuerto() || $this->isJefeEconomico()) {
             return true;
         }
 

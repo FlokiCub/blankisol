@@ -12,14 +12,14 @@
       <p class="text-xs text-slate-400 mt-0.5">Administra los usuarios registrados y sus respectivos roles de acceso.</p>
     </div>
     
-    <a href="{{ route('admin.users.create') }}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 active:scale-95 transition-all">
+    <a href="{{ route('admin.users.create') }}" class="btn-corporate-primary text-xs !py-2.5 !px-5 shadow-lg">
       <i class="fa-solid fa-user-plus"></i>
       <span>Nuevo Usuario</span>
     </a>
   </div>
 
   <!-- Filters & Search Bar -->
-  <div class="p-4 bg-slate-900/80 border border-slate-800 rounded-2xl shadow-sm">
+  <div class="p-4 card-corporate p-5 border border-[#cbcfd4]/15 rounded-3xl shadow-sm">
     <form method="GET" action="{{ route('admin.users.index') }}" class="grid grid-cols-1 sm:grid-cols-12 gap-3">
       
       <!-- Search Input -->
@@ -73,7 +73,7 @@
   </div>
 
   <!-- Users Table -->
-  <div class="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden shadow-sm">
+  <div class="card-corporate p-5 border border-[#cbcfd4]/15 rounded-3xl overflow-hidden shadow-sm">
     <div class="overflow-x-auto">
       <table class="w-full text-left text-xs text-slate-300">
         <thead class="bg-slate-950/60 text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
@@ -117,7 +117,7 @@
                   @php
                     $roleEnum = $user->role instanceof \App\Enums\UserRole ? $user->role : \App\Enums\UserRole::tryFrom((string) $user->role);
                     $badgeColors = match($roleEnum) {
-                        \App\Enums\UserRole::DIRECTOR => 'bg-indigo-500/15 text-indigo-300 border-indigo-500/30',
+                        \App\Enums\UserRole::DIRECTOR => 'bg-[#f5782b]/15 text-[#ff934f] border-[#f5782b]/30',
                         \App\Enums\UserRole::ADUANA => 'bg-amber-500/15 text-amber-300 border-amber-500/30',
                         \App\Enums\UserRole::PVP_TECNICO => 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
                         \App\Enums\UserRole::DESPACHO_PUERTO => 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',

@@ -13,6 +13,7 @@ enum UserRole: string
     case LOGISTICA_CHOFER = 'logistica_chofer';
     case CAJERO_REGIONAL = 'cajero_regional';
     case AUDITOR = 'auditor';
+    case JEFE_ECONOMICO = 'jefe_economico';
 
     public function label(): string
     {
@@ -24,6 +25,7 @@ enum UserRole: string
             self::LOGISTICA_CHOFER => 'Chofer / Logística de Distribución',
             self::CAJERO_REGIONAL => 'Cajero / Almacén Regional',
             self::AUDITOR => 'Auditor de Trazabilidad e Historial',
+            self::JEFE_ECONOMICO => 'Jefe Económico / Finanzas y Rentabilidad',
         };
     }
 
@@ -37,6 +39,7 @@ enum UserRole: string
             self::LOGISTICA_CHOFER => 'Ejecución y traslado en hojas de ruta provinciales.',
             self::CAJERO_REGIONAL => 'Cobro y liquidación de aranceles y fletes en USD y CUP por almacén.',
             self::AUDITOR => 'Inspección de auditoría, trazabilidad inmutable y logs.',
+            self::JEFE_ECONOMICO => 'Gestión económica de contenedores, costos fijos, tarifas, liquidaciones y cierre mensual.',
         };
     }
 

@@ -1,2 +1,22 @@
+# BLANKISOL SCGI - Directivas de Indexación y Rastreo
 User-agent: *
-Disallow:
+Allow: /
+Allow: /tracking$
+Allow: /contacto
+
+# Protección de Privacidad: Bloquear expedientes individuales de clientes
+Disallow: /tracking/
+Disallow: /api/
+
+# Bloquear módulos operativos internos y administrativos
+Disallow: /dashboard
+Disallow: /admin/
+Disallow: /customs/
+Disallow: /dispatch/
+Disallow: /logistics/
+Disallow: /manifests/
+Disallow: /cashier/
+Disallow: /audit/
+Disallow: /profitability/
+Disallow: /login
+Disallow: /logout

@@ -251,7 +251,11 @@ class TariffService
     public function parseCustomsXmlForExemption(string $xmlContent): array
     {
         try {
-            $xml = simplexml_load_string($xmlContent);
+            $xml = simplexml_load_string(
+                $xmlContent,
+                'SimpleXMLElement',
+                LIBXML_NONET | LIBXML_NOERROR | LIBXML_NOWARNING
+            );
 
             if ($xml === false) {
                 throw new \InvalidArgumentException('XML de manifiesto aduanal inválido');

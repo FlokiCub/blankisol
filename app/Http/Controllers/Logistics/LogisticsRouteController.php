@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Equipment;
 use App\Models\RegionalDispatchRoute;
 use App\Models\RegionalWarehouse;
+use App\Services\Finance\ContainerProfitabilityService;
 use App\Services\RegionalLogisticsService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -19,8 +20,10 @@ use Illuminate\View\View;
 class LogisticsRouteController extends Controller
 {
     public function __construct(
-        protected RegionalLogisticsService $logisticsService
+        protected RegionalLogisticsService $logisticsService,
+        protected ContainerProfitabilityService $profitabilityService
     ) {}
+
 
     /**
      * Listado general de Hojas de Ruta de traslado regional.
@@ -118,8 +121,25 @@ class LogisticsRouteController extends Controller
             ->whereNotIn('id', $route->equipments->pluck('id'))
             ->get();
 
-        return view('logistics.routes.show', compact('route', 'readyEquipments'));
+        $viability = $this->profitabilityService->evaluateRouteViability($route);
+
+        return view('logistics.routes.show', compact('route', 'readyEquipments', 'viability'));
     }
+
+    /**
+     * API JSON para consultar la viabilidad de la hoja de ruta en tiempo real.
+     */
+    public function getViability(RegionalDispatchRoute $route): JsonResponse
+    {
+        $route->load(['destinationWarehouse', 'equipments']);
+        $viability = $this->profitabilityService->evaluateRouteViability($route);
+
+        return response()->json([
+            'success' => true,
+            'viability' => $viability,
+        ]);
+    }
+
 
     /**
      * Agrega un bulto escaneado a la hoja de ruta en borrador.

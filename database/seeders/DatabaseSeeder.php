@@ -99,15 +99,31 @@ class DatabaseSeeder extends Seeder
         // ==========================================
         // 2. Usuarios con los 7 Perfiles RBAC
         // ==========================================
-        $password = Hash::make('Password123!');
+        $password = Hash::make('1234');
 
         $users = [
+            [
+                'name' => 'Director General (Admin)',
+                'username' => 'admin',
+                'email' => 'admin@blankisol.cu',
+                'role' => UserRole::DIRECTOR,
+                'phone' => '+53 5 111 0000',
+                'regional_warehouse_id' => null,
+            ],
             [
                 'name' => 'Director General',
                 'username' => 'director',
                 'email' => 'director@scgi.cu',
                 'role' => UserRole::DIRECTOR,
                 'phone' => '+53 5 111 0001',
+                'regional_warehouse_id' => null,
+            ],
+            [
+                'name' => 'Inspector Juan Aduana',
+                'username' => 'juan',
+                'email' => 'juan@example.com',
+                'role' => UserRole::ADUANA,
+                'phone' => '+53 5 111 0002',
                 'regional_warehouse_id' => null,
             ],
             [
@@ -158,7 +174,16 @@ class DatabaseSeeder extends Seeder
                 'phone' => '+53 5 111 0007',
                 'regional_warehouse_id' => null,
             ],
+            [
+                'name' => 'Lic. Elena Jefa Económica',
+                'username' => 'economico_elena',
+                'email' => 'economico@scgi.cu',
+                'role' => UserRole::JEFE_ECONOMICO,
+                'phone' => '+53 5 111 0008',
+                'regional_warehouse_id' => null,
+            ],
         ];
+
 
         foreach ($users as $userData) {
             User::updateOrCreate(
@@ -372,5 +397,93 @@ class DatabaseSeeder extends Seeder
                 'created_by_user_id' => $directorUser?->id,
             ]
         );
+
+        // ==========================================
+        // 5. Sprint 2.3: Hojas de Ruta y Logística Regional Demo
+        // ==========================================
+        $driverUser = User::where('email', 'chofer@scgi.cu')->first();
+
+        // Equipo 5: En Tránsito Regional hacia Santiago de Cuba
+        $eq5 = Equipment::updateOrCreate(
+            ['tracking_pin' => 'BK-44221'],
+            [
+                'vin_serial' => 'VIN-2026-YADEA-T9-33112',
+                'solve_cargo_tracking_id' => 'SC-2026-MIA-00654',
+                'equipment_type' => EquipmentType::VEHICLE,
+                'business_type' => BusinessType::B2C,
+                'brand' => 'Yadea',
+                'model' => 'T9 Lithium',
+                'color' => 'Negro Mate',
+                'current_status' => EquipmentStatus::REGIONAL_TRANSIT,
+                'customs_status' => 'duty_pending_payment',
+                'declared_value_usd' => 1950.00,
+                'duty_amount_usd' => 195.00,
+                'shipping_fee_usd' => 50.00,
+                'home_delivery_requested' => true,
+                'duty_paid_abroad' => false,
+                'delivery_paid_abroad' => false,
+                'customs_entry_at' => Carbon::now()->subDays(5),
+                'customs_cleared_at' => Carbon::now()->subDays(3),
+                'pvp_certified_at' => Carbon::now()->subDays(1),
+                'current_warehouse_id' => null,
+                'current_location_note' => 'En Tránsito Ruta HR-STG-01 hacia Santiago de Cuba',
+                'client_data' => [
+                    'name' => 'Danilo Fuentes Perdomo',
+                    'phone' => '+53 5 444 8899',
+                    'delivery_address' => 'Vista Alegre, Santiago de Cuba',
+                ],
+                'created_by_user_id' => $directorUser?->id,
+            ]
+        );
+
+        // Ruta en Tránsito hacia Santiago
+        $routeSantiago = RegionalDispatchRoute::updateOrCreate(
+            ['route_code' => 'HR-STG-2026-001'],
+            [
+                'origin_warehouse_id' => $warehouseHabana->id,
+                'destination_warehouse_id' => $warehouseSantiago->id,
+                'driver_name' => 'Manuel Logística',
+                'driver_phone' => '+53 5 111 0005',
+                'truck_license_plate' => 'B 789 123',
+                'status' => 'in_transit',
+                'dispatched_at' => Carbon::now()->subHours(8),
+                'notes' => 'Convoy regular de distribución Oriente #01',
+                'created_by_user_id' => $directorUser?->id,
+            ]
+        );
+
+        $routeSantiago->equipments()->syncWithoutDetaching([
+            $eq5->id => ['reception_status' => 'in_transit', 'created_at' => now(), 'updated_at' => now()],
+        ]);
+
+        // Ruta en Borrador hacia Holguín
+        $routeHolguin = RegionalDispatchRoute::updateOrCreate(
+            ['route_code' => 'HR-HLG-2026-001'],
+            [
+                'origin_warehouse_id' => $warehouseHabana->id,
+                'destination_warehouse_id' => $warehouseHolguin->id,
+                'driver_name' => 'Manuel Logística',
+                'driver_phone' => '+53 5 111 0005',
+                'truck_license_plate' => 'B 456 789',
+                'status' => 'draft',
+                'notes' => 'Hoja de ruta en preparación para envío norte oriental',
+                'created_by_user_id' => $directorUser?->id,
+            ]
+        );
+
+        $routeHolguin->equipments()->syncWithoutDetaching([
+            $eq2->id => ['reception_status' => 'assigned', 'created_at' => now(), 'updated_at' => now()],
+        ]);
+
+        // ==========================================
+        // 6. Parámetros Económicos y Rentabilidad (Sprint 5 & Sprint 6)
+        // ==========================================
+        $this->call([
+            EconomicParametersSeeder::class,
+            FixedCostItemsSeeder::class,
+            CommercialAgentsSeeder::class,
+        ]);
     }
 }
+
+

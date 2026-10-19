@@ -40,6 +40,8 @@ class TrackingPortalTest extends TestCase
         $detailResponse->assertStatus(200);
         $detailResponse->assertSee('BK-998877');
         $detailResponse->assertSee('Yadea G5 Pro');
+        $detailResponse->assertSee('noindex, nofollow');
+        $detailResponse->assertSee('BLANKISOL');
     }
 
     public function test_tracking_api_endpoint_returns_json_resource(): void

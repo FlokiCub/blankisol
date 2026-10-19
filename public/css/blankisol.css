@@ -1,0 +1,285 @@
+﻿/**
+ * BLANKISOL - Sistema de Diseño Corporativo
+ * Identidad Visual Oficial:
+ * - Azul Marino Principal: #051f42
+ * - Naranja Acento / CTA:  #f5782b
+ * - Gris Corporativo:      #cbcfd4
+ * - Blanco:                #ffffff
+ * Tipografía: Plus Jakarta Sans (Principal/Titulares) + JetBrains Mono (Tracking/Códigos)
+ */
+
+:root {
+  /* Paleta Corporativa */
+  --color-primary: #051f42;
+  --color-primary-rgb: 5, 31, 66;
+  --color-primary-hover: #03132a;
+  --color-primary-light: #0a3166;
+  --color-primary-surface: #0a254e;
+  --color-primary-glass: rgba(5, 31, 66, 0.85);
+
+  --color-accent: #f5782b;
+  --color-accent-rgb: 245, 120, 43;
+  --color-accent-hover: #e0651a;
+  --color-accent-light: #ff934f;
+  --color-accent-soft: rgba(245, 120, 43, 0.12);
+  --color-accent-glow: rgba(245, 120, 43, 0.35);
+
+  --color-neutral: #cbcfd4;
+  --color-neutral-rgb: 203, 207, 212;
+  --color-neutral-light: #f8fafc;
+  --color-neutral-dark: #020d1c;
+  --color-neutral-border: rgba(203, 207, 212, 0.2);
+  --color-white: #ffffff;
+
+  /* Tipografías */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Elevaciones y Sombras */
+  --shadow-corporate-sm: 0 2px 8px -1px rgba(5, 31, 66, 0.08);
+  --shadow-corporate-md: 0 8px 24px -4px rgba(5, 31, 66, 0.12);
+  --shadow-corporate-lg: 0 16px 40px -8px rgba(5, 31, 66, 0.2);
+  --shadow-accent-glow: 0 8px 25px -4px rgba(245, 120, 43, 0.45);
+  --shadow-card-dark: 0 10px 30px -5px rgba(2, 13, 28, 0.6);
+
+  /* Bordes & Transiciones */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+  --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base resets & behavior */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-primary);
+  color: #f1f5f9;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Clases de utilidad corporativa */
+.bg-corporate-primary { background-color: var(--color-primary); }
+.bg-corporate-surface { background-color: var(--color-primary-surface); }
+.bg-corporate-accent  { background-color: var(--color-accent); }
+.bg-corporate-dark    { background-color: var(--color-neutral-dark); }
+
+.text-corporate-primary { color: var(--color-primary); }
+.text-corporate-accent  { color: var(--color-accent); }
+.text-corporate-neutral { color: var(--color-neutral); }
+
+.border-corporate-primary { border-color: var(--color-primary-light); }
+.border-corporate-accent  { border-color: var(--color-accent); }
+.border-corporate-neutral { border-color: var(--color-neutral-border); }
+
+/* Gradientes de Marca */
+.bg-gradient-corporate-hero {
+  background: radial-gradient(circle at 50% 10%, rgba(10, 49, 102, 0.75) 0%, rgba(5, 31, 66, 0.98) 60%, rgba(2, 13, 28, 1) 100%);
+}
+
+.bg-gradient-corporate-accent {
+  background: linear-gradient(135deg, #f5782b 0%, #e0651a 100%);
+}
+
+.text-gradient-corporate {
+  background: linear-gradient(135deg, #ffffff 30%, #cbcfd4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(135deg, #ff934f 0%, #f5782b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Botones Corporativos */
+.btn-corporate-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #f5782b 0%, #e0651a 100%);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-accent-glow);
+  transition: var(--transition-smooth);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-corporate-primary:hover {
+  background: linear-gradient(135deg, #ff934f 0%, #f5782b 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -4px rgba(245, 120, 43, 0.6);
+  color: #ffffff;
+}
+
+.btn-corporate-primary:active {
+  transform: translateY(0);
+}
+
+.btn-corporate-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(203, 207, 212, 0.3);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-corporate-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  border-color: rgba(203, 207, 212, 0.6);
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+.btn-corporate-outline-orange {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--color-accent);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--color-accent);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.btn-corporate-outline-orange:hover {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  box-shadow: var(--shadow-accent-glow);
+}
+
+/* Tarjetas y Contenedores */
+.card-corporate {
+  background: rgba(10, 37, 78, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(203, 207, 212, 0.15);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card-dark);
+  transition: var(--transition-smooth);
+}
+
+.card-corporate:hover {
+  border-color: rgba(245, 120, 43, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px -10px rgba(2, 13, 28, 0.8), 0 0 20px -5px rgba(245, 120, 43, 0.15);
+}
+
+.card-corporate-light {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-corporate-sm);
+  transition: var(--transition-smooth);
+}
+
+.card-corporate-light:hover {
+  box-shadow: var(--shadow-corporate-md);
+  border-color: rgba(245, 120, 43, 0.4);
+  transform: translateY(-3px);
+}
+
+/* Formulario & Inputs */
+.input-corporate {
+  background: rgba(2, 13, 28, 0.7);
+  border: 1.5px solid rgba(203, 207, 212, 0.25);
+  color: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 0.9rem 1.25rem;
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+  outline: none;
+  width: 100%;
+}
+
+.input-corporate:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-accent-soft);
+  background: rgba(2, 13, 28, 0.9);
+}
+
+.input-corporate::placeholder {
+  color: #64748b;
+}
+
+/* Badges */
+.badge-corporate-orange {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background-color: rgba(245, 120, 43, 0.15);
+  color: #ff934f;
+  border: 1px solid rgba(245, 120, 43, 0.3);
+}
+
+.badge-corporate-navy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background-color: rgba(10, 49, 102, 0.6);
+  color: var(--color-neutral);
+  border: 1px solid rgba(203, 207, 212, 0.2);
+}
+
+/* Keyframe animations */
+@keyframes pulseSubtle {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.03); }
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 7s ease-in-out infinite;
+}
+
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float-soft {
+  animation: floatSoft 4s ease-in-out infinite;
+}

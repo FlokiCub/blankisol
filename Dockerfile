@@ -80,8 +80,8 @@ COPY docker/nginx.conf /etc/nginx/http.d/default.conf
 # Configurar Supervisor
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Exponer puerto
-EXPOSE 8080
+# Exponer puerto (Render usa 10000)
+EXPOSE 10000
 
 # Iniciar servicios
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

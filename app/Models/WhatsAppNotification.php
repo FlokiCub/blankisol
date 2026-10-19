@@ -20,13 +20,21 @@ class WhatsAppNotification extends Model
         'event_trigger',
         'message_body',
         'status',
+        'provider',
+        'template_name',
         'gateway_message_id',
         'error_details',
+        'raw_response',
         'sent_at',
+        'delivered_at',
+        'read_at',
     ];
 
     protected $casts = [
         'sent_at' => 'datetime',
+        'delivered_at' => 'datetime',
+        'read_at' => 'datetime',
+        'raw_response' => 'array',
     ];
 
     public function equipment(): BelongsTo

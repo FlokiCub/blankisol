@@ -123,6 +123,11 @@ class Equipment extends Model
         return $this->belongsTo(User::class, 'created_by_user_id');
     }
 
+    public function profitabilityAnalysis(): BelongsTo
+    {
+        return $this->belongsTo(ContainerProfitabilityAnalysis::class, 'solve_cargo_tracking_id', 'container_id');
+    }
+
     // ==========================================
     // Query Scopes de Negocio
     // ==========================================

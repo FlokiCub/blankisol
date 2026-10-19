@@ -1,0 +1,36 @@
+# render.yaml - Deploy automático en Render.com
+# Conecta tu repo en https://dashboard.render.com → New → Blueprint
+services:
+  - type: web
+    name: mi-web
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: CACHE_DRIVER
+        value: file
+      - key: SESSION_DRIVER
+        value: file
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: DB_CONNECTION
+        value: pgsql
+    # Variables secretas (configurar en Dashboard → Environment):
+    # - APP_KEY
+    # - APP_URL (se auto-genera: https://mi-web.onrender.com)
+    # - DATABASE_URL (se auto-conecta al crear PostgreSQL abajo)
+
+  - type: pserv
+    name: mi-web-db
+    plan: free
+    region: oregon
+    postgresMajorVersion: 16
+    # Gratis por 90 días, luego $7/mes
+    # Se conecta automáticamente via DATABASE_URL al web service
