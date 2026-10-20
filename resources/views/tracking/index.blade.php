@@ -1,34 +1,40 @@
 @extends('layouts.public')
 
-@section('title', 'BLANKISOL | Tu carga. Nuestro compromiso.')
-@section('meta_description', 'BLANKISOL es su operador logístico integral: transporte marítimo, aéreo y terrestre con sistema de trazabilidad y control aduanal en tiempo real.')
+@section('title', 'BLANKISOL SURL | Soluciones Integrales para Empresas e Instituciones')
+@section('meta_description', 'En BLANKISOL SURL conectamos soluciones logísticas y servicios tecnológicos integrales para responder a las necesidades operativas de nuestros clientes.')
 
 @section('content')
-    <!-- Navbar Corporativo -->
+    <!-- Navbar Corporativo Unificado -->
     @include('partials.landing.navbar')
 
-    <!-- Hero Principal con Eslogan -->
+    <!-- Hero Principal Corporativo con las 2 Líneas de Negocio -->
     @include('partials.landing.hero')
 
-    <!-- Módulo de Rastreo / Búsqueda de PIN Integrado -->
+    <!-- Bloques Principales de Negocio: Logística y Trazabilidad / Servicios Tecnológicos Integrales -->
+    @include('partials.landing.business_areas')
+
+    <!-- Módulo de Rastreo / Búsqueda de PIN de Carga en Vivo -->
     @include('partials.landing.tracking_box')
 
-    <!-- Sección Institucional: Quiénes Somos -->
+    <!-- Sección Institucional: Identidad y Propósito Corporativo -->
     @include('partials.landing.about')
 
-    <!-- Portafolio de Servicios Logísticos Multimodales -->
+    <!-- Portafolio de Servicios de la División Logística -->
     @include('partials.landing.services')
 
-    <!-- Proceso / Cómo Funciona en 4 Pasos -->
+    <!-- Proceso / Cómo Funciona el Traslado Logístico -->
     @include('partials.landing.process')
 
     <!-- Propuesta de Valor y Diferenciales -->
     @include('partials.landing.benefits')
 
-    <!-- Formulario de Captación y Cotización -->
+    <!-- Centro Interactivo de Preguntas Frecuentes (FAQ) -->
+    @include('partials.landing.faq')
+
+    <!-- Formulario de Captación y Cotización Logística -->
     @include('partials.landing.contact')
 
-    <!-- Pie de Página Corporativo -->
+    <!-- Pie de Página Corporativo Actualizado -->
     @include('partials.landing.footer')
 @endsection
 
@@ -50,6 +56,10 @@
         const select = document.getElementById('contact-modalidad');
         if (select) {
             select.value = modalidad;
+            const contactSection = document.getElementById('contacto');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
         }
     }
 

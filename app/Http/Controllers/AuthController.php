@@ -16,9 +16,20 @@ class AuthController extends Controller
     public function showLogin()
     {
         if (Auth::check()) {
-            return Auth::user()->isAdmin() 
-                ? redirect()->route('admin.dashboard')
-                : redirect()->route('dashboard');
+            $user = Auth::user();
+            if ($user->isShopAdmin()) {
+                return redirect()->route('shop.admin.dashboard');
+            }
+            if ($user->isAdmin()) {
+                return redirect()->route('admin.dashboard');
+            }
+            if ($user->isLogisticaChofer()) {
+                return redirect()->route('logistics.routes.index');
+            }
+            if ($user->isShopCustomer()) {
+                return redirect()->route('shop.index');
+            }
+            return redirect()->route('dashboard');
         }
 
         return view('auth.login');
@@ -68,9 +79,25 @@ class AuthController extends Controller
         Auth::login($user, $remember);
         $request->session()->regenerate();
 
+        if ($user->isShopAdmin()) {
+            $request->session()->forget('url.intended');
+            return redirect()->route('shop.admin.dashboard')
+                ->with('success', '¡Bienvenido al Panel de Administración Comercial de BLANKISOL SHOP, ' . $user->name . '!');
+        }
+
         if ($user->isAdmin()) {
             return redirect()->intended(route('admin.dashboard'))
                 ->with('success', '¡Bienvenido al Panel de Administración, ' . $user->name . '!');
+        }
+
+        if ($user->isLogisticaChofer()) {
+            return redirect()->intended(route('logistics.routes.index'))
+                ->with('success', '¡Bienvenido a Hojas de Ruta y Logística, ' . $user->name . '!');
+        }
+
+        if ($user->isShopCustomer()) {
+            return redirect()->route('shop.index')
+                ->with('success', '¡Bienvenido a BLANKISOL SHOP, ' . $user->name . '!');
         }
 
         return redirect()->intended(route('dashboard'))

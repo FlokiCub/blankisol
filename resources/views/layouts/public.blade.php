@@ -5,25 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'BLANKISOL | Tu carga. Nuestro compromiso.')</title>
-    <meta name="description" content="@yield('meta_description', 'BLANKISOL es su operador logístico de confianza para envíos de carga marítima, aérea y terrestre. Torre de control y seguimiento en tiempo real.')">
+    <meta name="description" content="@yield('meta_description', 'BLANKISOL SURL: Soluciones integrales para empresas e instituciones. Logística y trazabilidad avanzada, y Servicios Tecnológicos Integrales.')">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#051f42">
 
     <!-- Open Graph / Redes Sociales -->
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="BLANKISOL Logística">
+    <meta property="og:site_name" content="BLANKISOL SURL">
     <meta property="og:title" content="@yield('title', 'BLANKISOL | Tu carga. Nuestro compromiso.')">
-    <meta property="og:description" content="@yield('meta_description', 'Operador logístico integral con seguimiento en tiempo real de cargas y paquetería.')">
+    <meta property="og:description" content="@yield('meta_description', 'BLANKISOL SURL: Soluciones integrales en Logística y Trazabilidad, y Servicios Tecnológicos Integrales.')">
     <meta property="og:locale" content="es_ES">
+    <meta property="og:image" content="{{ asset('images/logo.png') }}">
 
-        <!-- Favicon Oficial Corporativo -->
-    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
-    <link rel="alternate icon" href="{{ asset('favicon.ico') }}">
+    <!-- Favicon Oficial Corporativo Adaptativo (Claro / Oscuro) -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon-light/favicon.ico') }}" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-light/favicon-32x32.png') }}" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-light/favicon-16x16.png') }}" media="(prefers-color-scheme: light)">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon-light/apple-touch-icon.png') }}" media="(prefers-color-scheme: light)">
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon-dark/favicon.ico') }}" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-dark/favicon-32x32.png') }}" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-dark/favicon-16x16.png') }}" media="(prefers-color-scheme: dark)">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon-dark/apple-touch-icon.png') }}" media="(prefers-color-scheme: dark)">
+
+    <!-- Fallback general -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon-dark/favicon.ico') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="@yield('title', 'BLANKISOL | Tu carga. Nuestro compromiso.')">
-    <meta name="twitter:description" content="@yield('meta_description', 'Operador logístico integral con seguimiento en tiempo real de cargas y paquetería.')">
+    <meta name="twitter:description" content="@yield('meta_description', 'BLANKISOL SURL: Soluciones integrales en Logística y Trazabilidad, y Servicios Tecnológicos Integrales.')">
+    <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
 
     <!-- Preconexión a Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,14 +92,18 @@
     </a>
 
     <!-- Capa ambiental de fondo / Efecto lumínico sutil corporativo -->
-    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-gradient-to-b from-[#0a3166]/40 via-[#051f42]/20 to-transparent blur-[140px] pointer-events-none animate-pulse-subtle -z-10"></div>
-    <div class="fixed bottom-0 right-0 w-[600px] h-[400px] bg-[#f5782b]/5 blur-[160px] pointer-events-none -z-10"></div>
-    <div class="fixed top-1/3 left-0 w-[500px] h-[500px] bg-[#020d1c]/80 blur-[130px] pointer-events-none -z-10"></div>
+    <div class="fixed inset-0 bg-grid-mesh pointer-events-none opacity-40 -z-10"></div>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-gradient-to-b from-[#0a3166]/50 via-[#051f42]/30 to-transparent blur-[140px] pointer-events-none animate-pulse-subtle -z-10"></div>
+    <div class="fixed bottom-0 right-0 w-[650px] h-[450px] bg-[#f5782b]/8 blur-[160px] pointer-events-none -z-10"></div>
+    <div class="fixed top-1/3 left-0 w-[550px] h-[550px] bg-[#020d1c]/90 blur-[130px] pointer-events-none -z-10"></div>
 
     <!-- Contenido Principal Dinámico -->
     <main id="main-content" class="flex-grow">
         @yield('content')
     </main>
+
+    <!-- Widget Flotante de Contacto Inmediato (Speed Dial & WhatsApp) -->
+    @include('partials.common.floating_contact')
 
     <!-- Scripts y complementos de página -->
     @yield('scripts')

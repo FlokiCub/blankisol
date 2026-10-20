@@ -1,0 +1,22 @@
+PAQUETE DE FAVICON — DOS VARIANTES
+
+Carpetas:
+- light/: variante del logotipo para fondos claros.
+- dark/: variante del logotipo para fondos oscuros.
+
+Cada carpeta incluye:
+- favicon.ico (multi-resolución)
+- favicon-16x16.png
+- favicon-32x32.png
+- favicon-48x48.png
+- apple-touch-icon.png (180x180)
+- android-chrome-192x192.png
+- android-chrome-512x512.png
+
+INSTALACIÓN EN LARAVEL:
+1. Copia las carpetas light y dark dentro de public/ renombrándolas, por ejemplo,
+   a public/favicon-light/ y public/favicon-dark/.
+2. Abre el layout Blade principal y añade SOLO el bloque de la variante que quieras usar.
+3. No incluyas ambos bloques a la vez en el mismo <head>: el navegador podría escoger cualquiera.
+4. Para un favicon único en toda la web, elige una variante. Si diferentes sitios/subdominios
+   o layouts necesitan fondos distintos, configura la variante correspondiente en cada layout.

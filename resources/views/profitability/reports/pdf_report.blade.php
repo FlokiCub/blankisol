@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Informe Ejecutivo de Rentabilidad — BLANKISOL S.R.L.</title>
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon-light/favicon.ico') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-light/favicon-32x32.png') }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon-light/apple-touch-icon.png') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -388,13 +391,16 @@
   <div class="report-sheet">
     <!-- Membrete Corporativo Oficial -->
     <div class="header">
-      <div>
-        <h1 class="company-title">SCGI BLANKISOL S.R.L.</h1>
-        <p class="company-sub">Sistema de Control de Gestión e Inteligencia Económica</p>
-        <span class="doc-badge">
-          <i class="fa-solid fa-scale-balanced" style="margin-right: 4px;"></i>
-          Informe Ejecutivo de Factibilidad y Rentabilidad de Contenedores
-        </span>
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <img src="{{ asset('favicon-light/apple-touch-icon.png') }}" alt="Logo Oficial BLANKISOL" style="width: 50px; height: 50px; object-fit: contain; border-radius: 10px; border: 1px solid #cbd5e1; padding: 2px;">
+        <div>
+          <h1 class="company-title">SCGI BLANKISOL S.R.L.</h1>
+          <p class="company-sub">Sistema de Control de Gestión e Inteligencia Económica</p>
+          <span class="doc-badge">
+            <i class="fa-solid fa-scale-balanced" style="margin-right: 4px;"></i>
+            Informe Ejecutivo de Factibilidad y Rentabilidad de Contenedores
+          </span>
+        </div>
       </div>
       <div class="meta-box">
         <div><strong>Fecha Emisión:</strong> {{ now()->format('d/m/Y H:i') }}</div>

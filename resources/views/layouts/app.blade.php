@@ -5,8 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ $title ?? 'Torre de Control' }} — SCGI BLANKISOL</title>
   
-    <!-- Favicon Oficial -->
-  <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+  <!-- Favicon Oficial Corporativo Adaptativo (Claro / Oscuro) -->
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon-light/favicon.ico') }}" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-light/favicon-32x32.png') }}" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-light/favicon-16x16.png') }}" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/x-icon" href="{{ asset('favicon-dark/favicon.ico') }}" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-dark/favicon-32x32.png') }}" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-dark/favicon-16x16.png') }}" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon-dark/apple-touch-icon.png') }}">
+  <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 
   <!-- Tailwind CSS CDN con configuración extendida -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -114,8 +121,8 @@
     <!-- Brand / Logotipo Oficial -->
     <div class="h-20 flex items-center justify-between px-6 border-b border-slate-800/80">
       <a href="{{ route('dashboard') }}" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#0a3166] via-[#051f42] to-[#020d1c] border border-[#f5782b]/40 text-[#f5782b] flex items-center justify-center text-white shadow-lg shadow-brand-500/25 group-hover:scale-105 transition-transform">
-          <i class="fa-solid fa-ship text-lg"></i>
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#0a3166] via-[#051f42] to-[#020d1c] border border-[#f5782b]/40 p-1 flex items-center justify-center shadow-lg shadow-brand-500/25 group-hover:scale-105 transition-transform overflow-hidden">
+          <img src="{{ asset('favicon-dark/apple-touch-icon.png') }}" alt="Logo Oficial BLANKISOL" class="w-full h-full object-contain">
         </div>
         <div>
           <div class="flex items-center gap-1.5">
@@ -227,6 +234,36 @@
         <a href="{{ route('admin.users.index') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all {{ request()->routeIs('admin.users.*') ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-900/40 border border-indigo-400/30' : 'text-slate-300 hover:bg-slate-800/80 hover:text-white' }}">
           <i class="fa-solid fa-users-gear w-5 text-center text-sm {{ request()->routeIs('admin.users.*') ? 'text-white' : 'text-indigo-400' }}"></i>
           <span class="flex-1">Usuarios & RBAC (7 Roles)</span>
+        </a>
+      @endif
+
+      {{-- MODULO COMERCIAL: TIENDA VIRTUAL (BLANKISOL SHOP) --}}
+      @if(auth()->user()->isShopAdmin() || auth()->user()->isDirector())
+        <div class="px-3 pt-4 pb-1 text-[10px] font-bold uppercase tracking-wider text-emerald-400">
+          Tienda Virtual (SHOP)
+        </div>
+
+        <a href="{{ route('shop.admin.dashboard') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all {{ request()->routeIs('shop.admin.*') ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-950/40 border border-emerald-400/30' : 'text-slate-300 hover:bg-emerald-950/40 hover:text-emerald-300' }}">
+          <i class="fa-solid fa-store w-5 text-center text-sm text-emerald-400"></i>
+          <span class="flex-1">Administración Tienda</span>
+        </a>
+
+        <a href="{{ route('shop.admin.products.index') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all text-slate-300 hover:bg-emerald-950/40 hover:text-emerald-300">
+          <i class="fa-solid fa-box-open w-5 text-center text-sm text-emerald-400"></i>
+          <span class="flex-1">Productos & Stock</span>
+        </a>
+
+        <a href="{{ route('shop.admin.orders.index') }}" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all text-slate-300 hover:bg-emerald-950/40 hover:text-emerald-300">
+          <i class="fa-solid fa-receipt w-5 text-center text-sm text-emerald-400"></i>
+          <span class="flex-1">Pedidos Comerciales</span>
+        </a>
+
+        <a href="{{ route('shop.index') }}" target="_blank" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 hover:bg-slate-800/80 hover:text-emerald-300 transition-all border border-dashed border-slate-800 hover:border-emerald-500/40">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-cart-shopping w-5 text-center text-sm text-emerald-400"></i>
+            <span>Ver Tienda Online</span>
+          </div>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-slate-500"></i>
         </a>
       @endif
 

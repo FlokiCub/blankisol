@@ -19,6 +19,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        \Illuminate\Support\Facades\View::composer('shop.*', function ($view) {
+            try {
+                if (\Illuminate\Support\Facades\Schema::hasTable('shop_categories')) {
+                    $categories = \App\Models\Shop\ShopCategory::where('is_active', true)
+                        ->whereNull('parent_id')
+                        ->orderBy('sort_order', 'asc')
+                        ->take(8)
+                        ->get();
+                    $view->with('shopNavCategories', $categories);
+                }
+            } catch (\Throwable $e) {
+                // Silently fallback if database is migrating
+            }
+        });
     }
 }

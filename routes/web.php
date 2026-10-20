@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PublicTrackingController;
+use App\Http\Controllers\TechServiceController;
 use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,14 +15,18 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-// Public tracking portal
+// Public tracking & corporate portal
 Route::get('/', [PublicTrackingController::class, 'index'])->name('home');
 Route::get('/tracking', [PublicTrackingController::class, 'index'])->name('tracking.index');
 Route::post('/tracking', [PublicTrackingController::class, 'search'])->name('tracking.search')->middleware('throttle:30,1');
 Route::get('/tracking/{pin}', [PublicTrackingController::class, 'show'])->name('tracking.show')->middleware('throttle:60,1');
 Route::get('/api/tracking/{pin}', [PublicTrackingController::class, 'apiLookup'])->name('api.tracking')->middleware('throttle:60,1');
 
-// Contact & Quote Requests
+// Commercial Area: Servicios Tecnológicos Integrales
+Route::get('/servicios-tecnologicos', [TechServiceController::class, 'index'])->name('tech_services.index');
+Route::post('/servicios-tecnologicos/solicitar', [TechServiceController::class, 'storeQuoteRequest'])->name('tech_services.quote.store')->middleware('throttle:10,60');
+
+// Contact & Quote Requests (Logística)
 Route::post('/contacto', [ContactController::class, 'store'])->name('contact.store')->middleware('throttle:5,60');
 
 // Authentication routes

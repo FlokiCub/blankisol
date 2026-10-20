@@ -1,4 +1,4 @@
-﻿/**
+/**
  * BLANKISOL - Sistema de Diseño Corporativo
  * Identidad Visual Oficial:
  * - Azul Marino Principal: #051f42
@@ -283,3 +283,143 @@ body {
 .animate-float-soft {
   animation: floatSoft 4s ease-in-out infinite;
 }
+
+/* ==========================================================================
+   FASE 9.1: SISTEMA DE PROFUNDIDAD VISUAL, MESH Y ANTI-FLAT UI
+   ========================================================================== */
+
+/* Fondos Texturizados y Rejillas Cyber-Nautical */
+.bg-grid-mesh {
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(10, 49, 102, 0.45) 0%, transparent 60%),
+    linear-gradient(rgba(203, 207, 212, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(203, 207, 212, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 36px 36px, 36px 36px;
+}
+
+.bg-dots-pattern {
+  background-image: radial-gradient(rgba(203, 207, 212, 0.12) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+/* Glassmorphism Multicapa con Bisel Superior Iluminado */
+.glass-panel-3d {
+  background: linear-gradient(135deg, rgba(10, 37, 78, 0.72) 0%, rgba(5, 31, 66, 0.85) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(203, 207, 212, 0.14);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.12),
+    0 10px 30px -5px rgba(2, 13, 28, 0.7),
+    0 0 0 1px rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-xl);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-3d:hover {
+  transform: translateY(-4px);
+  border-color: rgba(245, 120, 43, 0.45);
+  box-shadow: 
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.2),
+    0 20px 40px -10px rgba(2, 13, 28, 0.85),
+    0 0 30px -8px rgba(245, 120, 43, 0.25);
+}
+
+/* Resplandor y Auras de Acento */
+.glow-accent-sm {
+  box-shadow: 0 0 15px -2px rgba(245, 120, 43, 0.4);
+}
+
+.glow-accent-md {
+  box-shadow: 0 0 25px -4px rgba(245, 120, 43, 0.55);
+}
+
+.glow-accent-pulse {
+  animation: glowPulse 3s infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 12px 0 rgba(245, 120, 43, 0.3); }
+  100% { box-shadow: 0 0 28px 4px rgba(245, 120, 43, 0.65); }
+}
+
+/* Efecto de destello interactivo (Shine Sweep) */
+.hover-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 65%
+  );
+  transform: rotate(25deg) translateY(-100%);
+  transition: transform 0.85s cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none;
+}
+
+.hover-shine:hover::after {
+  transform: rotate(25deg) translateY(100%);
+}
+
+/* Botón flotante Speed Dial */
+.floating-widget-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #f5782b 0%, #d85714 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 25px -4px rgba(245, 120, 43, 0.6), 0 0 0 2px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-widget-btn:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 16px 32px -4px rgba(245, 120, 43, 0.75), 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.floating-widget-btn:active {
+  transform: scale(0.96);
+}
+
+/* Indicador de pulso activo */
+.status-beacon {
+  position: relative;
+  display: inline-flex;
+}
+
+.status-beacon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 9999px;
+  background: inherit;
+  animation: beaconPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes beaconPing {
+  75%, 100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+

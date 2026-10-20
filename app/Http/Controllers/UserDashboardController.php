@@ -13,6 +13,10 @@ class UserDashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
+        if ($user && $user->isShopAdmin()) {
+            return redirect()->route('shop.admin.dashboard');
+        }
+
         return view('dashboard', compact('user'));
     }
 }

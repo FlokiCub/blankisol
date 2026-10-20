@@ -1,0 +1,233 @@
+/**
+ * BLANKISOL SHOP — Estilos Oficiales del Storefront Comercial
+ * Inspirado en la arquitectura visual moderna y de alta conversión de Tuambia / Jámazon.
+ * Paleta clara, tarjetas blancas elevadas, chips en píldora y diseño optimizado para entregas en Cuba en USD.
+ */
+
+:root {
+  --shop-bg: #F8F9FA;
+  --shop-surface: #FFFFFF;
+  --shop-surface-muted: #F1F3F5;
+  --shop-primary: #10b981;
+  --shop-primary-hover: #059669;
+  --shop-primary-light: #ecfdf5;
+  --shop-accent: #0284c7;
+  --shop-warning: #f59e0b;
+  --shop-warning-light: #fffbeb;
+  --shop-text-dark: #111827;
+  --shop-text-muted: #4b5563;
+  --shop-text-subtle: #9ca3af;
+  --shop-border: #E5E7EB;
+  --shop-border-subtle: #F3F4F6;
+  --shop-radius-pill: 9999px;
+  --shop-radius-card: 16px;
+  --shop-radius-card-lg: 20px;
+}
+
+body.shop-tuambia {
+  background-color: var(--shop-bg);
+  color: var(--shop-text-dark);
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tarjetas de Producto estilo Tuambia */
+.tuambia-product-card {
+  background: var(--shop-surface);
+  border: 1px solid #E5E7EB;
+  border-radius: var(--shop-radius-card);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.tuambia-product-card:hover {
+  transform: translateY(-3px);
+  border-color: #cbd5e1;
+  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+}
+
+.tuambia-card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #F8FAFC;
+  overflow: hidden;
+  border-top-left-radius: calc(var(--shop-radius-card) - 1px);
+  border-top-right-radius: calc(var(--shop-radius-card) - 1px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tuambia-card-img-wrap img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.35s ease;
+}
+
+.tuambia-product-card:hover .tuambia-card-img-wrap img {
+  transform: scale(1.04);
+}
+
+/* Badges de Disponibilidad / Stock */
+.tuambia-badge-stock {
+  background-color: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  border-radius: 9999px;
+  padding: 3px 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tuambia-badge-ondemand {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  border-radius: 9999px;
+  padding: 3px 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tuambia-badge-discount {
+  background-color: #ef4444;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 11px;
+  border-radius: 9999px;
+  padding: 2px 7px;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.25);
+}
+
+/* Subnavegación en Píldoras / Chips */
+.tuambia-subnav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #4b5563;
+  background-color: #ffffff;
+  border: 1px solid #E5E7EB;
+  border-radius: 9999px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.tuambia-subnav-pill:hover,
+.tuambia-subnav-pill.active {
+  color: #ffffff;
+  background-color: #059669;
+  border-color: #059669;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
+}
+
+/* Botones de Acción Comercial */
+.tuambia-btn-add {
+  background-color: #059669;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: 12px;
+  padding: 10px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.tuambia-btn-add:hover {
+  background-color: #047857;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.25);
+}
+
+.tuambia-btn-add:active {
+  transform: translateY(0);
+}
+
+/* Círculos de Categorías (Vitrina Tuambia) */
+.tuambia-category-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  transition: transform 0.2s ease;
+}
+
+.tuambia-category-circle:hover {
+  transform: translateY(-3px);
+}
+
+.tuambia-category-icon-box {
+  width: 76px;
+  height: 76px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  border: 1.5px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #059669;
+  font-size: 26px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
+}
+
+.tuambia-category-circle:hover .tuambia-category-icon-box {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #ffffff;
+  border-color: #059669;
+  box-shadow: 0 8px 20px rgba(5, 150, 105, 0.25);
+}
+
+/* Barra de Anuncios y Selector de Zona Cuba */
+.tuambia-zone-bar {
+  background-color: #FFFBEB;
+  border-bottom: 1px solid #FDE68A;
+  color: #92400E;
+  font-size: 12.5px;
+  padding: 8px 16px;
+}
+
+/* Barra de Búsqueda en Píldora */
+.tuambia-search-bar {
+  border: 1.5px solid #E2E8F0;
+  border-radius: 9999px;
+  background: #FFFFFF;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tuambia-search-bar:focus-within {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+/* Scrollbar sutil para listas horizontales */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

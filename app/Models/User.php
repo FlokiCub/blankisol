@@ -29,6 +29,8 @@ class User extends Authenticatable
         'role',
         'regional_warehouse_id',
         'is_active',
+        'google_id',
+        'avatar',
     ];
 
     /**
@@ -139,6 +141,16 @@ class User extends Authenticatable
     public function isJefeEconomico(): bool
     {
         return $this->role === UserRole::JEFE_ECONOMICO;
+    }
+
+    public function isShopAdmin(): bool
+    {
+        return $this->role === UserRole::ADMINISTRADOR_TIENDA;
+    }
+
+    public function isShopCustomer(): bool
+    {
+        return $this->role === UserRole::CLIENTE_TIENDA;
     }
 
     /**

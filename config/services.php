@@ -67,4 +67,10 @@ return [
         'webhook_verify_token' => env('WHATSAPP_WEBHOOK_VERIFY_TOKEN', 'scgi_secure_wa_webhook_token_2026'),
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI', env('APP_URL', 'http://localhost') . '/shop/auth/google/callback'),
+    ],
+
 ];

@@ -14,8 +14,8 @@
         <div class="flex items-center justify-between h-20">
             <!-- Brand Logo -->
             <a href="{{ route('home') }}" class="flex items-center gap-3.5 group focus:outline-none focus:ring-2 focus:ring-[#f5782b] rounded-xl p-1">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#0a3166] via-[#051f42] to-[#020d1c] border border-[#f5782b]/30 flex items-center justify-center text-[#f5782b] shadow-md group-hover:scale-105 group-hover:border-[#f5782b] transition-all">
-                    <i class="fa-solid fa-ship text-lg"></i>
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#0a3166] via-[#051f42] to-[#020d1c] border border-[#f5782b]/30 p-1 flex items-center justify-center shadow-md group-hover:scale-105 group-hover:border-[#f5782b] transition-all overflow-hidden">
+                    <img src="{{ asset('favicon-dark/apple-touch-icon.png') }}" alt="Logo Oficial BLANKISOL" class="w-full h-full object-contain">
                 </div>
                 <div>
                     <span class="text-xl font-extrabold tracking-tight text-white block leading-tight font-sans">

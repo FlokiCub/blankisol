@@ -14,6 +14,8 @@ enum UserRole: string
     case CAJERO_REGIONAL = 'cajero_regional';
     case AUDITOR = 'auditor';
     case JEFE_ECONOMICO = 'jefe_economico';
+    case ADMINISTRADOR_TIENDA = 'administrador_tienda';
+    case CLIENTE_TIENDA = 'cliente_tienda';
 
     public function label(): string
     {
@@ -26,6 +28,8 @@ enum UserRole: string
             self::CAJERO_REGIONAL => 'Cajero / Almacén Regional',
             self::AUDITOR => 'Auditor de Trazabilidad e Historial',
             self::JEFE_ECONOMICO => 'Jefe Económico / Finanzas y Rentabilidad',
+            self::ADMINISTRADOR_TIENDA => 'Administrador Comercial de Tienda (BLANKISOL SHOP)',
+            self::CLIENTE_TIENDA => 'Cliente de BLANKISOL SHOP',
         };
     }
 
@@ -40,6 +44,8 @@ enum UserRole: string
             self::CAJERO_REGIONAL => 'Cobro y liquidación de aranceles y fletes en USD y CUP por almacén.',
             self::AUDITOR => 'Inspección de auditoría, trazabilidad inmutable y logs.',
             self::JEFE_ECONOMICO => 'Gestión económica de contenedores, costos fijos, tarifas, liquidaciones y cierre mensual.',
+            self::ADMINISTRADOR_TIENDA => 'Gestión exclusiva del catálogo, pedidos, inventario y ventas de la tienda virtual.',
+            self::CLIENTE_TIENDA => 'Compras en la tienda virtual, seguimiento de pedidos y gestión de cuenta personal.',
         };
     }
 

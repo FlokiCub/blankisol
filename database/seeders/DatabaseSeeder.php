@@ -482,6 +482,7 @@ class DatabaseSeeder extends Seeder
             EconomicParametersSeeder::class,
             FixedCostItemsSeeder::class,
             CommercialAgentsSeeder::class,
+            ShopDemoSeeder::class,
         ]);
     }
 }

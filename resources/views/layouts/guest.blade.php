@@ -8,8 +8,15 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="theme-color" content="#051f42">
 
-        <!-- Favicon Oficial -->
-    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <!-- Favicon Oficial Corporativo Adaptativo (Claro / Oscuro) -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon-light/favicon.ico') }}" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-light/favicon-32x32.png') }}" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-light/favicon-16x16.png') }}" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon-dark/favicon.ico') }}" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-dark/favicon-32x32.png') }}" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-dark/favicon-16x16.png') }}" media="(prefers-color-scheme: dark)">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon-dark/apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,8 +65,8 @@
     <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
         <!-- Logo -->
         <a href="{{ route('home') }}" class="inline-flex items-center gap-3.5 group focus:outline-none focus:ring-2 focus:ring-[#f5782b] rounded-2xl p-1">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0a3166] via-[#051f42] to-[#020d1c] border border-[#f5782b]/40 flex items-center justify-center text-[#f5782b] shadow-xl group-hover:scale-105 group-hover:border-[#f5782b] transition-all duration-300">
-                <i class="fa-solid fa-ship text-xl"></i>
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0a3166] via-[#051f42] to-[#020d1c] border border-[#f5782b]/40 p-1.5 flex items-center justify-center shadow-xl group-hover:scale-105 group-hover:border-[#f5782b] transition-all duration-300 overflow-hidden">
+                <img src="{{ asset('favicon-dark/apple-touch-icon.png') }}" alt="Logo Oficial BLANKISOL" class="w-full h-full object-contain">
             </div>
             <div class="text-left">
                 <div class="flex items-center gap-2">
