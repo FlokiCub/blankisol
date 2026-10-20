@@ -39,7 +39,7 @@ Elige la opción que prefieras según la herramienta disponible en tu computador
 --- OPCIÓN A: COMANDO UNIVERSAL DE WINDOWS (Nativo en Windows 10/11 - RECOMENDADO) ---
 Ejecútalo tal cual en PowerShell o CMD (no necesitas instalar nada adicional):
 
-tar -a -c -f deploy_hostinger.zip --exclude=".git" --exclude="node_modules" --exclude="tests" --exclude="whatsapp-gateway" --exclude=".env" --exclude="*.zip" --exclude="scratch_*" --exclude="storage/logs/*.log" app bootstrap config database public resources routes storage vendor .htaccess .env.production.example artisan composer.json composer.lock
+tar -a -c -f deploy_hostinger2.zip --exclude=".git" --exclude="node_modules" --exclude="tests" --exclude="whatsapp-gateway" --exclude=".env" --exclude="*.zip" --exclude="scratch_*" --exclude="storage/logs/*.log" app bootstrap config database public resources routes storage vendor .htaccess .env.production.example artisan composer.json composer.lock
 
 
 --- OPCIÓN B: SCRIPT DE POWERSHELL (Si prefieres un script PowerShell) ---
